@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Star, ShoppingCart, Fire } from "lucide-react";
+import { Star, ShoppingCart, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Product } from "@/data/products";
@@ -53,7 +53,7 @@ export function ProductCard({ product, variant = "default", delay = 0 }: Product
         {product.rating >= 4.5 && (
           <div className="absolute top-2 left-2 z-10">
             <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/90 px-2 py-1 text-xs font-medium text-white">
-              <Fire className="h-3 w-3" /> Populaire
+              <Flame className="h-3 w-3" /> Populaire
             </span>
           </div>
         )}
