@@ -79,10 +79,104 @@
   .btn-hover {
     @apply transition-transform duration-300 hover:translate-y-[-2px] active:translate-y-[1px];
   }
+  
+  /* Améliorations des cartes produits */
+  .product-card {
+    @apply transition-all duration-300 hover:shadow-xl relative overflow-hidden;
+  }
+  
+  .product-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 transition-opacity duration-300;
+  }
+  
+  .product-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Animation d'apparition pour les sections */
+  .fade-in-section {
+    @apply opacity-0 translate-y-6;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  /* Animation de pulse pour les badges */
+  .pulse-badge {
+    @apply relative;
+  }
+  
+  .pulse-badge::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-primary scale-110 opacity-0;
+    animation: pulse 2s infinite;
+  }
 }
 
 @layer utilities {
   .clip-path-slant {
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   }
+  
+  /* Effet de brillance au survol */
+  .shine-effect {
+    @apply relative overflow-hidden;
+  }
+  
+  .shine-effect::after {
+    content: '';
+    @apply absolute top-0 left-[-100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg];
+    animation: shine 0s ease forwards;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .shine-effect:hover::after {
+    animation: shine 1s ease infinite;
+    opacity: 1;
+  }
+}
+
+/* Keyframes pour les animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+@keyframes shine {
+  100% {
+    left: 150%;
+  }
+}
+
+/* Animation pour l'apparition des produits */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in-animation {
+  animation: scaleIn 0.5s ease-out forwards;
 }
